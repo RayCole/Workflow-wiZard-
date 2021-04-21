@@ -1,0 +1,36 @@
+.**********************************************************************
+.* Macro: CVICS
+.*
+.* Description:
+.*   Perform Compare and Swap (Used by 'C' CS inline macro)
+.*
+.* Input:
+.*   R0  = Compare value
+.*   R1  = Swap value
+.*   R2  = Address of compare value updated with non-equal target if
+.*         CS condition is non zero
+.*   R14 = Target area address
+.*
+.* Warning:
+.*   Macro destroys R15
+.*
+.* Return:
+.*   Result returned in R15 as follows...
+.*      0 = Equal and swap performed
+.*      1 = Not equal
+.**********************************************************************
+         MACRO
+&LBL     CVICS
+         AIF   ('&LBL' EQ '').NOLBL
+&LBL     DS    0H
+.NOLBL   ANOP  ,
+         LA    15,0                    Assume CS is successfull
+         CS    0,1,0(14)
+         JZ    CS10&SYSNDX
+         LA    15,1                    Indicate CS not performed
+         LTR   2,2                     New target value ptr?
+         JZ    CS10&SYSNDX              No -> Bypass save
+         ST    0,0(,2)                 Save non-equal target value
+CS10&SYSNDX DS 0H
+.MEND    MEND
+

@@ -1,0 +1,21 @@
+         MACRO
+         AREGS
+         GBLA  &AREGS
+&AREGS   SETA  1
+AR0      EQU   0
+AR1      EQU   1
+AR2      EQU   2
+AR3      EQU   3
+AR4      EQU   4
+AR5      EQU   5
+AR6      EQU   6
+AR7      EQU   7
+AR8      EQU   8
+AR9      EQU   9
+AR10     EQU   10
+AR11     EQU   11
+AR12     EQU   12
+AR13     EQU   13
+AR14     EQU   14
+AR15     EQU   15
+         MEND
